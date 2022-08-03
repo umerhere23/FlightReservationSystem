@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2022 at 06:50 PM
+-- Generation Time: Aug 03, 2022 at 04:36 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -31,19 +31,21 @@ CREATE TABLE `flight` (
   `flightNumber` varchar(25) NOT NULL DEFAULT '',
   `flightDate` date DEFAULT NULL,
   `origin` varchar(25) NOT NULL DEFAULT '',
-  `destination` varchar(25) NOT NULL DEFAULT ''
+  `destination` varchar(25) NOT NULL DEFAULT '',
+  `adultPassenger` int(11) DEFAULT NULL,
+  `kidPassenger` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `flight`
 --
 
-INSERT INTO `flight` (`flightNumber`, `flightDate`, `origin`, `destination`) VALUES
-('AR2301', '2022-08-18', 'Vancouver', 'Los Angeles'),
-('BH7683', '2022-09-21', 'Edmonton', 'Montreal'),
-('CA0394', '2022-10-03', 'Vancouver', 'Miami'),
-('GE4345', '2022-08-25', 'Toronto', 'Phoenix'),
-('YG3127', '2022-09-01', 'Vancouver', 'Toronto');
+INSERT INTO `flight` (`flightNumber`, `flightDate`, `origin`, `destination`, `adultPassenger`, `kidPassenger`) VALUES
+('AR2301', '2022-08-18', 'Vancouver', 'Los Angeles', NULL, NULL),
+('BH7683', '2022-09-21', 'Edmonton', 'Montreal', NULL, NULL),
+('CA0394', '2022-10-03', 'Vancouver', 'Miami', NULL, NULL),
+('GE4345', '2022-08-25', 'Toronto', 'Phoenix', NULL, NULL),
+('YG3127', '2022-09-01', 'Vancouver', 'Toronto', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -63,6 +65,29 @@ INSERT INTO `fromflights` (`FromID`) VALUES
 ('Calgary'),
 ('Seattle'),
 ('Vancouver');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `passenger`
+--
+
+CREATE TABLE `passenger` (
+  `firstName` varchar(25) NOT NULL DEFAULT '',
+  `lastName` varchar(25) NOT NULL DEFAULT '',
+  `passPortNo` varchar(25) NOT NULL DEFAULT '',
+  `DOB` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `passenger`
+--
+
+INSERT INTO `passenger` (`firstName`, `lastName`, `passPortNo`, `DOB`) VALUES
+('e', 'w', '33', '2022-08-02'),
+('U', 's', 'p232', '2022-08-16'),
+('U', 's', 'p2321', '2022-08-15'),
+('Ali', 'Hasan', 'P234567', '2022-08-24');
 
 -- --------------------------------------------------------
 
@@ -105,6 +130,12 @@ ALTER TABLE `flight`
 --
 ALTER TABLE `fromflights`
   ADD PRIMARY KEY (`FromID`);
+
+--
+-- Indexes for table `passenger`
+--
+ALTER TABLE `passenger`
+  ADD PRIMARY KEY (`passPortNo`);
 
 --
 -- Indexes for table `systemuser`
